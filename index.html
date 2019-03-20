@@ -3,22 +3,46 @@
 <head>
 	<title>gallery</title>
 	<style>
+		body{
+			background-color: lightblue;
+			color: white;
+		}
+		body > *{
+			font-size: 0;
+		}
+		.bio{
+			background-color: midnightblue;
+			display: inline-block;
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 45%;
+			height: 25%;
+			padding: 10px;
+		}
 		.galleryImg{
 			width: 25%;
-			float: left;
+			left: 0;
+			margin: 0;
 			position: relative;
 
 		}
 		.galleryImg > img{
+			position: relative;
 			width: 100%;
-
 		}
 		.galleryImg:hover > img{
-			position: absolute;
+			position: relative;
 			left: 0px;
 			top: 0px;
 			z-index: 1;
 			width: 50vw;
+		}
+		h2{
+			font-size: 36px;
+		}
+		p{
+			font-size: 12px;
 		}
 	</style>
 </head>
@@ -28,7 +52,11 @@
 </body>
 	<script>
 
-	var images = [
+	var images = ["images/7a6f37eded84a07844dc308b8e3fa790.jpg",
+			"images/maxresdefault.jpg",
+			"images/photo-129299193.jpg",
+			"images/photographing-landscapes-3e.jpg",
+			"images/tropical-beach-landscapes.jpg"
 		//add images here based on photos in the images folder.
 		//each image name needs to be a string
 		//remember, the images are in a folder called "image"
@@ -36,7 +64,9 @@
 
 	// call one of the functions below.  Give it an argument of the
 	// images array above
-	
+
+	displayImagesInGallery(images);
+	setupText("Claudius", 22, "web developer");
 
 	/******** you don't need to modify anything below this line ******/
 	function displayImagesInGallery(imageArray){
@@ -56,5 +86,29 @@
 		return imgContainer;
 	}
 
+	function bio(name, age, profession, dogName) {
+		dogAge = age*7;
+		if(dogName){
+			return "hello my name is " + name + ". I am a " + profession + ". My dog's name is " + dogName + ". I am " + age + " in human years and " + dogAge + " in dog years.";
+		}
+		else{
+			return "hello my name is " + name + ". I am a " + profession + ". I don't have a dog. I am " + age + " in human years and " + dogAge + " in dog years.";
+		}
+	}
+
+	function setupText(name, age, profession, dogName){
+		var bioHolder = document.createElement("DIV");
+		var bioTitle = name + "'s Bio";
+		var bioTitleElement = document.createElement("H2");
+		var bioSentence = bio(name, age, profession, dogName);
+		var bioSentenceElement = document.createElement("P");
+
+		bioHolder.className += "bio";
+		bioTitleElement.innerText = bioTitle;
+		bioSentenceElement.innerText = bioSentence;
+		document.querySelector('body').appendChild(bioHolder);
+		document.querySelector('.bio').appendChild(bioTitleElement);
+		document.querySelector('.bio').appendChild(bioSentenceElement);
+	}
 	</script>
 </html>
